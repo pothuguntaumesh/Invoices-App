@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply text-4xl;
+  }
+  h2 {
+    @apply text-xl;
+  }
+  h3 {
+    @apply text-lg;
+  }
+  h4 {
+    @apply text-sm;
+  }
+  a {
+    @apply text-blue-600 underline;
+  }
+  p {
+    @apply text-xs;
+  }
+  .custom-checkbox {
+    @apply appearance-none w-4 h-4 bg-3-dark-black rounded-sm cursor-pointer relative;
+  }
+
+  .custom-checkbox:hover {
+    @apply border-2 border-1-dark-violet;
+  }
+
+  .custom-checkbox:checked {
+    @apply bg-1-dark-violet;
+  }
+
+  .custom-checkbox:checked::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0.25rem;
+    height: 0.5rem;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  html,
+  body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: "League Spartan", sans-serif;
+  }
+  #root {
+    height: 100%;
+    width: 100%;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+}
