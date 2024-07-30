@@ -1,20 +1,10 @@
-import React, { useState } from "react";
-import { PaymentStatus } from "../../types/types";
+import React from "react";
+import { FilterModalProps, PaymentStatus } from "../types/types";
 
-const FilterModal = () => {
-  const [selectedFilters, setSelectedFilters] = useState(new Array(String));
+const FilterModal = ({ addClickedFilter }: FilterModalProps) => {
   const filterValues = Object.values(PaymentStatus).filter(
     (value) => typeof value === "string"
   );
-  const clickedFilter = (filter: string) => {
-    console.log(filter);
-    // setSelectedFilters((prevFilters) => {
-    //   const newFilters = [...prevFilters];
-    //   newFilters.filter(curFilter=>)
-    //   return newFilters;
-    // });
-    console.log(selectedFilters);
-  };
   return (
     <div
       className="pl-8 py-4 pr-24 mt-5 bg-4-light-black absolute top-10 rounded-md"
@@ -29,7 +19,7 @@ const FilterModal = () => {
               type="checkbox"
               className="custom-checkbox"
               value={filter}
-              onChange={() => clickedFilter(filter)}
+              onChange={() => addClickedFilter(filter)}
             />
             <h4 className="text-white font-bold">{filter}</h4>
           </li>

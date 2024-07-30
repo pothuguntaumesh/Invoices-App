@@ -14,3 +14,10 @@ export interface InvoiceCardProps {
   amount: number;
   status: string;
 }
+export interface FilterModalProps {
+  addClickedFilter: (filter: string) => void;
+}
+
+export interface InvoideHeaderProps {
+  addClickedFilter: (filter: string) => void;
+}

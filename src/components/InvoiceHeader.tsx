@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import arrowDown from "../assets/icon-arrow-down.svg";
 import arrowUp from "../assets/icon-arrow-up.svg";
 import NewInvoiceButton from "./UI/NewInvoiceButton";
-import FilterModal from "./Modals/FilterModal";
+import FilterModal from "./FilterModal";
+import { InvoideHeaderProps } from "../types/types";
 
-const InvoiceHeader = () => {
+const InvoiceHeader = ({ addClickedFilter }: InvoideHeaderProps) => {
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
 
   const showFilterModal = (): void => {
@@ -29,7 +30,9 @@ const InvoiceHeader = () => {
         >
           <h3 className="text-11-white mx-4 font-bold">Filter by status</h3>
           <img src={isFilterModalOpen ? arrowUp : arrowDown} alt="arrow" />
-          {isFilterModalOpen && <FilterModal />}
+          {isFilterModalOpen && (
+            <FilterModal addClickedFilter={addClickedFilter} />
+          )}
         </div>
         <NewInvoiceButton />
       </div>
