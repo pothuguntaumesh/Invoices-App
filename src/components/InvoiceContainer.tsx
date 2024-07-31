@@ -1,10 +1,11 @@
 import React from "react";
 import InvoiceHeader from "./InvoiceHeader";
-import InvoiceCard from "./UI/InvoiceCard";
+import InvoiceCard from "./InvoiceCard";
 import { InvoiceCardProps } from "../types/types";
 import EmptyInvoice from "./EmptyInvoice";
 import { useState } from "react";
 
+//Backend: Fetch this data from backend and map it to the InvoiceCardProps and then show it.
 const dummyData: InvoiceCardProps[] = [
   {
     id: "RT3080",
@@ -72,7 +73,10 @@ const dummyData: InvoiceCardProps[] = [
 ];
 const InvoiceContainer = () => {
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
-  console.log(selectedFilters);
+  const filteredData: InvoiceCardProps[] =
+    selectedFilters.length > 0
+      ? dummyData.filter((data) => selectedFilters.includes(data.status))
+      : dummyData;
 
   const addClickedFilter = (filter: string) => {
     setSelectedFilters((prevFilters) =>
@@ -83,20 +87,14 @@ const InvoiceContainer = () => {
   };
   return (
     <div className="flex-grow bg-8-very-dark-black overflow-scroll">
-      <div className="mx-auto w-11/12 lg:w-3/5 mt-20">
+      <div className="mx-auto w-11/12 lg:w-3/5 mt-10 sm:mt-20">
         <InvoiceHeader addClickedFilter={addClickedFilter} />
-        {/* //Show the below Invoice if the there is not data in the backend. */}
 
-        {/* <EmptyInvoice /> */}
-        {dummyData.map((data) => {
-          if (selectedFilters.length > 0) {
-            if (selectedFilters.includes(data.status)) {
-              return <InvoiceCard {...data} />;
-            }
-          } else {
-            return <InvoiceCard {...data} />;
-          }
-        })}
+        {!filteredData.length && <EmptyInvoice />}
+        {filteredData.length &&
+          filteredData.map((invoiceData) => (
+            <InvoiceCard key={invoiceData.id} {...invoiceData} />
+          ))}
         {/* <InvoiceCard {...dummyData} /> */}
         {/* <InvoiceCard />
         <InvoiceCard />

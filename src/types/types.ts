@@ -21,3 +21,25 @@ export interface FilterModalProps {
 export interface InvoideHeaderProps {
   addClickedFilter: (filter: string) => void;
 }
+export interface SideBarProps {
+  toggleTheme: () => void;
+}
+
+export enum Theme {
+  Light = "Light",
+  Dark = "Dark",
+}
+
+export interface AvatarProps {
+  toggleTheme: () => void;
+}
+export interface AddInvoiceProps {
+  toggleAddInvoiceModal: () => void;
+}
+
+export interface BackdropProps {
+  toggleModal: () => void;
+}
+export interface InputBoxProps {
+  inputType: string;
+}

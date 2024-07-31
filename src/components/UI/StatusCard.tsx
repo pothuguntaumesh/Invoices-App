@@ -1,6 +1,7 @@
 import React from "react";
 import righArrow from "../../assets/icon-arrow-right.svg";
 import { PaymentStatus, StatusCardProps } from "../../types/types";
+import { useMediaQuery } from "react-responsive";
 
 const statusStyles = {
   [PaymentStatus.Paid]: {
@@ -22,6 +23,7 @@ const statusStyles = {
 
 const StatusCard = ({ statusType }: StatusCardProps) => {
   const { bg, textColor, status } = statusStyles[statusType];
+  const isSmallScreen = useMediaQuery({ query: "(max-width: 640px)" });
 
   return (
     <div className="flex items-center gap-6">
@@ -33,7 +35,9 @@ const StatusCard = ({ statusType }: StatusCardProps) => {
           {status}
         </h3>
       </div>
-      <img src={righArrow} alt="Right Arrow" className="cursor-pointer" />
+      {!isSmallScreen && (
+        <img src={righArrow} alt="Right Arrow" className="cursor-pointer" />
+      )}
     </div>
   );
 };

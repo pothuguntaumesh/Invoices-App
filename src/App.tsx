@@ -4,7 +4,7 @@ import InvoiceContainer from "./components/InvoiceContainer";
 
 function App() {
   return (
-    <div className="flex h-full w-full">
+    <div className="flex flex-col sm:flex-row h-full w-full">
       <SideBar />
       <InvoiceContainer />
     </div>
