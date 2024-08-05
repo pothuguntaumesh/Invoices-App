@@ -35,9 +35,6 @@ const StatusCard = ({ statusType }: StatusCardProps) => {
           {status}
         </h3>
       </div>
-      {!isSmallScreen && (
-        <img src={righArrow} alt="Right Arrow" className="cursor-pointer" />
-      )}
     </div>
   );
 };

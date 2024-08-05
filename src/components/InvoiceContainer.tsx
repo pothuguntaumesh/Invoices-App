@@ -95,22 +95,6 @@ const InvoiceContainer = () => {
           filteredData.map((invoiceData) => (
             <InvoiceCard key={invoiceData.id} {...invoiceData} />
           ))}
-        {/* <InvoiceCard {...dummyData} /> */}
-        {/* <InvoiceCard />
-        <InvoiceCard />
-        <InvoiceCard />
-        <InvoiceCard />
-        <InvoiceCard />
-        <InvoiceCard />
-        <InvoiceCard />
-        <InvoiceCard />
-        <InvoiceCard />
-        <InvoiceCard />
-        <InvoiceCard />
-        <InvoiceCard />
-        <InvoiceCard />
-        <InvoiceCard />
-        <InvoiceCard /> */}
       </div>
     </div>
   );

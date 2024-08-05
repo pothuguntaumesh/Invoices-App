@@ -3,6 +3,7 @@ import StatusCard from "./UI/StatusCard";
 import { InvoiceCardProps } from "../types/types";
 import { formatCurrency, mapStatusToEnum } from "../utils/utils";
 import { useMediaQuery } from "react-responsive";
+import righArrow from "../assets/icon-arrow-right.svg";
 
 const InvoiceCard = ({
   id,
@@ -46,7 +47,11 @@ const InvoiceCard = ({
             <span className="pr-1">$</span>
             {formatCurrency(amount)}
           </h2>
-          <StatusCard statusType={mapStatusToEnum(status)} />
+          <div className="flex items-center gap-4 justify-between">
+            <StatusCard statusType={mapStatusToEnum(status)} />
+
+            <img src={righArrow} alt="Right Arrow" className="cursor-pointer" />
+          </div>
         </>
       )}
     </div>

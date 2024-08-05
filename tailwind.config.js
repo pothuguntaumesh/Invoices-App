@@ -42,6 +42,9 @@ module.exports = {
       height: {
         "logo-height": "103px",
       },
+      fontSize: {
+        md: "1rem",
+      },
     },
   },
   plugins: [],

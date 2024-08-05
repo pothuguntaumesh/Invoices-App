@@ -36,10 +36,19 @@ export interface AvatarProps {
 export interface AddInvoiceProps {
   toggleAddInvoiceModal: () => void;
 }
+export interface AddInvoiceModalProps {
+  toggleModal: () => void;
+}
 
 export interface BackdropProps {
   toggleModal: () => void;
 }
 export interface InputBoxProps {
   inputType: string;
+}
+export interface Item {
+  id: string;
+  itemName: string;
+  quantity: number | null;
+  price: number | null;
 }
