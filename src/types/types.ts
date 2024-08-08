@@ -3,16 +3,56 @@ export interface StatusCardProps {
 }
 
 export enum PaymentStatus {
-  Draft = "Draft",
-  Paid = "Paid",
-  Pending = "Pending",
+  Draft = "draft",
+  Paid = "paid",
+  Pending = "pending",
+}
+// export interface InvoiceCardProps {
+//   id: string;
+//   dueDate: string;
+//   name: string;
+//   amount: number;
+//   status: string;
+// }
+
+export interface Address {
+  street: string;
+  city: string;
+  postCode: string;
+  country: string;
+}
+
+// export interface Item {
+//   name: string;
+//   quantity: number;
+//   price: number;
+//   total: number;
+// }
+
+export interface Item {
+  id: string;
+  itemName: string;
+  quantity: number | null;
+  price: number | null;
+  total?: number;
+}
+
+export interface InvoiceCardFields {
+  id: string;
+  createdAt: string;
+  paymentDue: string;
+  description: string;
+  paymentTerms: number;
+  clientName: string;
+  clientEmail: string;
+  status: string;
+  senderAddress: Address;
+  clientAddress: Address;
+  items: Item[];
+  total: number;
 }
 export interface InvoiceCardProps {
-  id: string;
-  dueDate: string;
-  name: string;
-  amount: number;
-  status: string;
+  invoice: InvoiceCardFields;
 }
 export interface FilterModalProps {
   addClickedFilter: (filter: string) => void;
@@ -46,9 +86,17 @@ export interface BackdropProps {
 export interface InputBoxProps {
   inputType: string;
 }
-export interface Item {
-  id: string;
-  itemName: string;
-  quantity: number | null;
-  price: number | null;
+
+export interface InvoiceDetailButtonsProps {
+  toggleDeleteModal: () => void;
+}
+export interface InvoiceDetailHeaderProps {
+  toggleDeleteModal: () => void;
+  invoiceStatus: string;
+}
+export interface DeleteInvoiceProps {
+  toggleDeleteModal: () => void;
+}
+export interface DeleteInvoiceModalProps {
+  toggleDeleteModal: () => void;
 }

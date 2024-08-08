@@ -10,8 +10,8 @@ function App() {
       <div className="flex flex-col sm:flex-row h-full w-full">
         <SideBar />
         <Routes>
-          <Route path="/invoice/:id" element={<InvoiceDetail />} />
           <Route path="/" element={<InvoiceContainer />} />
+          <Route path="/invoice/:id" element={<InvoiceDetail />} />
         </Routes>
       </div>
     </Router>

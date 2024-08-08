@@ -53,6 +53,9 @@
   .option-style {
     @apply bg-white text-gray-700 hover:bg-gray-100 hover:text-gray-900;
   }
+  .left-half-plus-51 {
+    left: calc(50% + 51px);
+  }
   html,
   body {
     height: 100%;

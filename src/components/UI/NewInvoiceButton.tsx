@@ -8,7 +8,6 @@ const NewInvoiceButton = () => {
   const [isAddInvoiceModalOpen, setIsAddInvoiceModalOpen] = useState(false);
 
   const toggleAddInvoiceModal = (): void => {
-    console.log("toogleInvoice modal");
     setIsAddInvoiceModalOpen((prev) => !prev);
   };
   return (
