@@ -1,11 +1,12 @@
 import React from "react";
 import StatusCard from "./UI/StatusCard";
-import { InvoiceDetailHeaderProps, PaymentStatus } from "../types/types";
+import { InvoiceDetailHeaderProps } from "../types/types";
 import { useMediaQuery } from "react-responsive";
 import InvoiceDetailButtons from "./InvoiceDetailButtons";
 import { mapStatusToEnum } from "../utils/utils";
 
 const InvoiceDetailHeader = ({
+  invoiceId,
   invoiceStatus,
   toggleDeleteModal,
 }: InvoiceDetailHeaderProps) => {
@@ -17,7 +18,10 @@ const InvoiceDetailHeader = ({
         <StatusCard statusType={mapStatusToEnum(invoiceStatus)} />
       </div>
       {!isMediumScreen && (
-        <InvoiceDetailButtons toggleDeleteModal={toggleDeleteModal} />
+        <InvoiceDetailButtons
+          invoiceId={invoiceId}
+          toggleDeleteModal={toggleDeleteModal}
+        />
       )}
     </div>
   );

@@ -1,7 +1,6 @@
 import * as Yup from "yup";
 
 export const addInvoiceSendSchema = Yup.object().shape({
-  //   id: Yup.string().required("ID is required"),
   streetAddressFrom: Yup.string().required("Street Address is required"),
   cityFrom: Yup.string().required("City is required"),
   postalCodeFrom: Yup.string().required("Postal Code is required"),
@@ -20,13 +19,12 @@ export const addInvoiceSendSchema = Yup.object().shape({
   items: Yup.array()
     .of(
       Yup.object().shape({
-        itemName: Yup.string().required("Item Name is required"),
+        name: Yup.string().required("Item Name is required"),
         quantity: Yup.number()
           .positive("Invalid")
           .integer("Invalid")
           .required("Quantity is required"),
         price: Yup.number().positive("Invalid").required("Invalid"),
-        total: Yup.number().positive("Invalid").required("Invalid"),
       })
     )
     .required("Items are required"),

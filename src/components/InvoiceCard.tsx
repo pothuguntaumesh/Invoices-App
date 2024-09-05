@@ -5,12 +5,16 @@ import { formatCurrency, mapStatusToEnum } from "../utils/utils";
 import { useMediaQuery } from "react-responsive";
 import righArrow from "../assets/icon-arrow-right.svg";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setCurrentInvoiceId } from "../features/invoices/invoiceSlice";
 
 const InvoiceCard = ({ invoice }: InvoiceCardProps) => {
   const isSmallScreen = useMediaQuery({ query: "(max-width: 639px)" });
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const viewInvoiceHandler = (id: string) => {
-    navigate(`/invoice/${id}`, { state: { invoice } });
+    dispatch(setCurrentInvoiceId(id));
+    navigate(`/invoice/${id}`);
   };
   return (
     <div
@@ -19,7 +23,7 @@ const InvoiceCard = ({ invoice }: InvoiceCardProps) => {
     >
       {isSmallScreen ? (
         <>
-          <div className="flex justify-between items-center w-full py-4">
+          <div className="flex justify-between items-center w-full py-4 ">
             <h2 className="font-bold">
               <span className="text-7-gray-blue">#</span>
               {invoice.id}
@@ -31,9 +35,11 @@ const InvoiceCard = ({ invoice }: InvoiceCardProps) => {
               <h4 className="text-5-light-gray py-4">
                 Due {invoice.paymentDue}
               </h4>
-              <h2 className="font-bold tracking-wide">
+              <h2 className="font-bold tracking-wide ">
                 <span className="pr-1">$</span>
-                {formatCurrency(invoice.total)}
+                {invoice.total !== null && invoice.total !== undefined
+                  ? formatCurrency(invoice.total)
+                  : ""}
               </h2>
             </div>
             <StatusCard statusType={mapStatusToEnum(invoice.status)} />
@@ -49,7 +55,9 @@ const InvoiceCard = ({ invoice }: InvoiceCardProps) => {
           <h4>{invoice.clientName}</h4>
           <h2 className="font-bold tracking-wide">
             <span className="pr-1">$</span>
-            {formatCurrency(invoice.total)}
+            {invoice.total !== null && invoice.total !== undefined
+              ? formatCurrency(invoice.total)
+              : ""}
           </h2>
           <div className="flex items-center gap-4 justify-between">
             <StatusCard statusType={mapStatusToEnum(invoice.status)} />

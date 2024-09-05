@@ -1,18 +1,23 @@
 import React from "react";
 import back from "../assets/icon-arrow-left.svg";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import InvoiceDetailHeader from "./InvoiceDetailHeader";
 import InvoiceDetailContainer from "./InvoiceDetailContainer";
 import InvoiceDetailButtons from "./InvoiceDetailButtons";
 import { useMediaQuery } from "react-responsive";
 import { useState } from "react";
 import DeleteInvoice from "./Modals/DeleteInvoice";
-import { InvoiceCardFields, InvoiceCardProps } from "../types/types";
+import { InvoiceCardFields } from "../types/types";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 const InvoiceDetail = () => {
-  const location = useLocation();
-  const invoice: InvoiceCardFields = location.state?.invoice;
-  console.log(invoice, "Invoice details inside the detail component");
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const { id } = useParams();
+
+  const invoices: InvoiceCardFields[] = useSelector(
+    (state: any) => state.invoices.invoices
+  );
+  const invoice = invoices.find((invoice) => invoice.id === id)!;
   const isMediumScreen = useMediaQuery({ query: "(max-width: 768px)" });
   const navigate = useNavigate();
 
@@ -24,7 +29,10 @@ const InvoiceDetail = () => {
     <div className="flex-grow bg-8-very-dark-black overflow-scroll ">
       <div className="mx-auto w-11/12 xl:w-3/5 mt-12 relative">
         {isDeleteModalOpen && (
-          <DeleteInvoice toggleDeleteModal={toggleDeleteModal} />
+          <DeleteInvoice
+            invoiceId={invoice!.id}
+            toggleDeleteModal={toggleDeleteModal}
+          />
         )}
         <div className="cursor-pointer" onClick={() => navigate("/")}>
           <img
@@ -37,14 +45,18 @@ const InvoiceDetail = () => {
           </button>
         </div>
         <InvoiceDetailHeader
-          invoiceStatus={invoice.status}
+          invoiceId={invoice.id}
+          invoiceStatus={invoice!.status}
           toggleDeleteModal={toggleDeleteModal}
         />
-        <InvoiceDetailContainer />
+        <InvoiceDetailContainer invoice={invoice} />
       </div>
       {isMediumScreen && (
         <div className="mt-12 bg-3-dark-black py-6 flex justify-center">
-          <InvoiceDetailButtons toggleDeleteModal={toggleDeleteModal} />
+          <InvoiceDetailButtons
+            invoiceId={invoice.id}
+            toggleDeleteModal={toggleDeleteModal}
+          />
         </div>
       )}
     </div>

@@ -7,6 +7,10 @@ export enum PaymentStatus {
   Paid = "paid",
   Pending = "pending",
 }
+export enum ModalType {
+  EDIT = "edit",
+  ADD = "add",
+}
 // export interface InvoiceCardProps {
 //   id: string;
 //   dueDate: string;
@@ -31,7 +35,7 @@ export interface Address {
 
 export interface Item {
   id: string;
-  itemName: string;
+  name: string;
   quantity: number | null;
   price: number | null;
   total?: number;
@@ -42,16 +46,19 @@ export interface InvoiceCardFields {
   createdAt: string;
   paymentDue: string;
   description: string;
-  paymentTerms: number;
+  paymentTerms: number | null;
   clientName: string;
   clientEmail: string;
   status: string;
   senderAddress: Address;
   clientAddress: Address;
-  items: Item[];
-  total: number;
+  items: Item[] | null;
+  total: number | null;
 }
 export interface InvoiceCardProps {
+  invoice: InvoiceCardFields;
+}
+export interface InvoiceDetailContainerProps {
   invoice: InvoiceCardFields;
 }
 export interface FilterModalProps {
@@ -60,6 +67,7 @@ export interface FilterModalProps {
 
 export interface InvoideHeaderProps {
   addClickedFilter: (filter: string) => void;
+  invoiceCount: number;
 }
 export interface SideBarProps {
   toggleTheme: () => void;
@@ -74,7 +82,7 @@ export interface AvatarProps {
   toggleTheme: () => void;
 }
 export interface AddInvoiceProps {
-  toggleAddInvoiceModal: () => void;
+  toggleAddEditInvoiceModal: () => void;
 }
 export interface AddInvoiceModalProps {
   toggleModal: () => void;
@@ -88,15 +96,24 @@ export interface InputBoxProps {
 }
 
 export interface InvoiceDetailButtonsProps {
+  invoiceId: string;
   toggleDeleteModal: () => void;
 }
 export interface InvoiceDetailHeaderProps {
+  invoiceId: string;
   toggleDeleteModal: () => void;
   invoiceStatus: string;
 }
 export interface DeleteInvoiceProps {
+  invoiceId: string;
   toggleDeleteModal: () => void;
 }
 export interface DeleteInvoiceModalProps {
   toggleDeleteModal: () => void;
+  invoiceId: string;
+}
+
+export interface ModalState {
+  isModalOpen: boolean;
+  modalType: ModalType;
 }

@@ -6,7 +6,10 @@ import FilterModal from "./FilterModal";
 import { InvoideHeaderProps } from "../types/types";
 import { useMediaQuery } from "react-responsive";
 
-const InvoiceHeader = ({ addClickedFilter }: InvoideHeaderProps) => {
+const InvoiceHeader = ({
+  addClickedFilter,
+  invoiceCount,
+}: InvoideHeaderProps) => {
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const isSmallScreen = useMediaQuery({ query: "(max-width: 640px)" });
 
@@ -21,7 +24,7 @@ const InvoiceHeader = ({ addClickedFilter }: InvoideHeaderProps) => {
         </h1>
         {/* {Backend: Show the invoices count below from backend} */}
         <h3 className="text-11-white font-bold">
-          {isSmallScreen ? "" : "There are total"} 7 invoices
+          {isSmallScreen ? "" : "There are total"} {invoiceCount} invoices
         </h3>
       </div>
       <div className="flex items-center flex-wrap relative">
